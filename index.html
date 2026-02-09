@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nimo 💖 My Valentine</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 45px;
+      width: 420px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      position: relative;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      color: #e91e63;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #444;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      position: relative;
+      height: 80px;
+    }
+
+    button {
+      padding: 14px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .yes {
+      background: linear-gradient(135deg, #ff5f9e, #ff2e63);
+      color: white;
+    }
+
+    .no {
+      background: #e0e0e0;
+      position: absolute;
+    }
+
+    #response {
+      margin-top: 25px;
+      font-size: 20px;
+      color: #e91e63;
+      font-weight: 600;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: float 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Hi My love 💕</h1>
+    <p>I’ve been meaning to ask you something special…</p>
+    <p><strong>Will you be my Valentine?</strong></p>
+
+    <div class="buttons">
+      <button class="yes" onclick="yesClicked()">Yes 💖</button>
+      <button class="no" id="noBtn" onmouseover="moveNo()">No 🙈</button>
+    </div>
+
+    <div id="response"></div>
+  </div>
+
+  <script>
+    function yesClicked() {
+      document.getElementById("response").innerHTML =
+        "Yaaay !! 🥰💖 Being with you feels like i'm exactly where i need to be.I just love the feeling of being with you!";
+    }
+
+    function moveNo() {
+      const btn = document.getElementById("noBtn");
+      const container = document.querySelector(".buttons");
+
+      const maxX = container.clientWidth - btn.offsetWidth;
+      const maxY = container.clientHeight - btn.offsetHeight;
+
+      btn.style.left = Math.random() * maxX + "px";
+      btn.style.top = Math.random() * maxY + "px";
+    }
+
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }, 500);
+  </script>
+
+</body>
+</html>
